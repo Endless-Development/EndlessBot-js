@@ -1,4 +1,4 @@
-const prefix = "!"
+const { token, prefix } = require("./config.json");
 
 const fs = require("fs");
 const Discord = require("discord.js");
@@ -58,4 +58,4 @@ client.on("message", async message => {
     }
 });
 
-client.login('NjU2OTE4NTQ4NDcxMzQ5MjYw.XfppEg.48mlNQbOxzqp1dodJnmFOip0wU0');
+client.login(token);
