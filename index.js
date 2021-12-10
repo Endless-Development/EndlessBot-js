@@ -1,6 +1,7 @@
 const prefix = "!"
 
-const Discord = require('discord.js');
+const fs = require("fs");
+const Discord = require("discord.js");
 const client = new Discord.Client({
     intents: [
         Discord.Intents.FLAGS.GUILDS,
@@ -23,8 +24,14 @@ client.commands.normal.aliases = new Discord.Collection();
 client.commands.buttons = new Discord.Collection();
 client.commands.menus = new Discord.Collection();
 client.commands.slash = new Discord.Collection();
+console.log("[INFO] Starting bot...");
+
+module.exports = {
+    client: client
+}
 
 const eventFiles = fs.readdirSync('./listeners').filter(file => file.endsWith('.js'));
+console.log("[INFO] Registering events...");
 
 for (const file of eventFiles) {
 	const event = require(`./listeners/${file}`);
@@ -34,10 +41,6 @@ for (const file of eventFiles) {
 		client.on(event.name, (...args) => event.run(...args));
 	}
 }
-
-client.on("ready", () => {
-	console.log('Bot is now online')
-})
 
 client.on("message", async message => {
     if(message.author.bot) return;
@@ -55,4 +58,4 @@ client.on("message", async message => {
     }
 });
 
-client.login('');
+client.login('NjU2OTE4NTQ4NDcxMzQ5MjYw.XfppEg.48mlNQbOxzqp1dodJnmFOip0wU0');
