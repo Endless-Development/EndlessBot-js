@@ -1,4 +1,4 @@
-const { token, prefix } = require("./config.json");
+const { token, prefix } = require("./config/main.json");
 
 const messageLogChannel = "919174742353788939";
 
