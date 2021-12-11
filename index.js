@@ -51,18 +51,16 @@ for (const file of eventFiles) {
 	}
 }
 
-client.on("message", async message => {
+client.on("messageCreate", async message => {
     if(message.author.bot) return;
-    if(message.channel.type === "dm") return message.reply("Non puoi usare il bot in una chat privata!");
-    if(!message.guild) return message.reply("Non stai usando il bot in un server!");
-    if(message.mentions.users.has("885121885346623498")) return message.reply("Il mio prefisso è **`!`**, usa **`!help`** per la lista dei comandi");
+    if(!message.guild || message.guild.id != "885121885346623498") return message.reply("Non stai usando il bot in un server o il server non è **Endless Network**!");
+    if(message.mentions.has(client.user)) return message.reply("Il mio prefisso è **`!`**, usa **`!help`** per la lista dei comandi");
     if(!message.content.startsWith(prefix)) return;
     if(!message.member) message.member = await message.guild.fetchMember(message);
     const args = message.content.slice(prefix.length).trim().split(/ +/g);
     const cmd = args.shift().toLowerCase();
     if(cmd.length == 0) return;
     var command = client.commands.get(cmd);
-    if(!command) command = client.commands.get(client.aliases.get(cmd));
     if(command) {
         command.run(client,message,args);
     }
