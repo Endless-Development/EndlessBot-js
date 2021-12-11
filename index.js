@@ -1,5 +1,7 @@
 const { token, prefix } = require("./config.json");
 
+const messageLogChannel = "919174742353788939";
+
 const fs = require("fs");
 const Discord = require("discord.js");
 const client = new Discord.Client({
@@ -27,22 +29,23 @@ client.commands.slash = new Discord.Collection();
 console.log("Starting bot...");
 
 module.exports = {
-    client: client
+    client: client,
+    messageLogChannel: messageLogChannel
 }
 // Load handlers and commands
-const handlers = fs.readdirSync('./handlers').filter(file => file.endsWith('.js'));
+const handlers = fs.readdirSync('./src/handlers').filter(file => file.endsWith('.js'));
 for (const file of handlers) {
-	const handler = require(`./handlers/${file}`);
+	const handler = require(`./src/handlers/${file}`);
     console.log("[HANDLER] Loading handler "+file);
 	handler.run();
 }
 
 // Load events
-const eventFiles = fs.readdirSync('./listeners').filter(file => file.endsWith('.js'));
+const eventFiles = fs.readdirSync('./src/listeners').filter(file => file.endsWith('.js'));
 console.log("[EVENTS] Registering events...");
 
 for (const file of eventFiles) {
-	const event = require(`./listeners/${file}`);
+	const event = require(`./src/listeners/${file}`);
     console.log("[EVENTS] Loading event listener "+file);
 	if (event.once) {
 		client.once(event.name, (...args) => event.run(...args));
