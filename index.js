@@ -24,17 +24,26 @@ client.commands.normal.aliases = new Discord.Collection();
 client.commands.buttons = new Discord.Collection();
 client.commands.menus = new Discord.Collection();
 client.commands.slash = new Discord.Collection();
-console.log("[INFO] Starting bot...");
+console.log("Starting bot...");
 
 module.exports = {
     client: client
 }
+// Load handlers and commands
+const handlers = fs.readdirSync('./handlers').filter(file => file.endsWith('.js'));
+for (const file of handlers) {
+	const handler = require(`./handlers/${file}`);
+    console.log("[HANDLER] Loading handler "+file);
+	handler.run();
+}
 
+// Load events
 const eventFiles = fs.readdirSync('./listeners').filter(file => file.endsWith('.js'));
-console.log("[INFO] Registering events...");
+console.log("[EVENTS] Registering events...");
 
 for (const file of eventFiles) {
 	const event = require(`./listeners/${file}`);
+    console.log("[EVENTS] Loading event listener "+file);
 	if (event.once) {
 		client.once(event.name, (...args) => event.run(...args));
 	} else {
@@ -44,8 +53,9 @@ for (const file of eventFiles) {
 
 client.on("message", async message => {
     if(message.author.bot) return;
-    if(message.channel.type === "dm") return message.reply("Non puoi usare il bot in una chat privata");
-    if(!message.guild) return;
+    if(message.channel.type === "dm") return message.reply("Non puoi usare il bot in una chat privata!");
+    if(!message.guild) return message.reply("Non stai usando il bot in un server!");
+    if(message.mentions.users.has("885121885346623498")) return message.reply("Il mio prefisso è **`!`**, usa **`!help`** per la lista dei comandi");
     if(!message.content.startsWith(prefix)) return;
     if(!message.member) message.member = await message.guild.fetchMember(message);
     const args = message.content.slice(prefix.length).trim().split(/ +/g);
