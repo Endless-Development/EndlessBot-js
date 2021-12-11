@@ -1,6 +1,6 @@
 const { token, prefix } = require("./config/main.json");
 
-const messageLogChannel = "919174742353788939";
+const messageLogChannel = "919238263171063878";
 
 const fs = require("fs");
 const Discord = require("discord.js");
