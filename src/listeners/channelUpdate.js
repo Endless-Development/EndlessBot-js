@@ -29,6 +29,6 @@ module.exports = {
 
         if(embed.fields.count <= 1) return;
 
-        index.client.channels.cache.find(channel => channel.id == index.channelLogChannel).send({ content: `**${role}**`, embeds: [embed] });
+        index.client.channels.cache.find(channel => channel.id == index.channelLogChannel).send({ content: `**${channel}**`, embeds: [embed] });
     }
 }
