@@ -1,7 +1,7 @@
 module.exports = {
     name: 'ready',
     once: true,
-    run: async(client, message, args) => {
+    run: function() {
         console.log("[INFO] Bot is now online!");
     }
 }
