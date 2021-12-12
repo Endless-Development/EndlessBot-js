@@ -5,9 +5,11 @@ module.exports = {
     name: 'roleUpdate',
     run: async(old, role) => {
         let embed = new MessageEmbed()
-        .setColor(role.hexColor || "#7289da")
+        .setColor(role.hexColor)
         .setTitle("Ruolo modificato")
         .setFooter(`ID Ruolo: ${role.id}`);
+
+        if(role.hexColor.toLowerCase() == "#99aab5") embed.setColor("#7289da")
 
         if(old.name != role.name) {
             embed.addField(`Nome prima:`, `\`\`\`${old.name}\`\`\``, true);
