@@ -13,7 +13,7 @@ module.exports = {
         let embed = new MessageEmbed()
         .setColor("#ff0000")
         .addField(`Contenuto:`, `\`\`\`${message.content}\`\`\``)
-        .setFooter(`ID Autore: ${message.author.id} | ID Messaggio: ${message.id}`);
+        .setFooter(`ID Autore: ${message.author.id} | ID Messaggio: ${message.id}`, message.author.displayAvatarURL());
     
         index.client.channels.cache.find(channel => channel.id == index.messageLogChannel).send({ content: `**Messaggio di ${user} eliminato in ${message.channel}**`, embeds: [embed] });
     }
