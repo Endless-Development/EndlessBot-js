@@ -10,6 +10,6 @@ module.exports = {
         .setFooter(`ID Ruolo: ${role.id}`)
         .addField(`Nome del ruolo:`, `\`\`\`${role.name}\`\`\``);
 
-        index.client.channels.cache.find(channel => channel.id == index.roleLogChannel).send({ content: `**@${role.name}**`, embeds: [embed] });
+        index.client.channels.cache.find(channel => channel.id == index.roleLogChannel).send({ content: `**@deleted-role**`, embeds: [embed] });
     }
 }
