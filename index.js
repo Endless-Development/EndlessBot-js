@@ -4,7 +4,9 @@ const messageLogChannel = "919238263171063878";
 const channelLogChannel = "919261939035688960";
 const roleLogChannel = "919262133722685531";
 const memberLogChannel = "919261911688831006";
+const staffLogChannel = "885130939682918431";
 
+const Logger = require("./src/util/Logger");
 const fs = require("fs");
 const Discord = require("discord.js");
 const client = new Discord.Client({
@@ -29,7 +31,7 @@ client.commands.normal.aliases = new Discord.Collection();
 client.commands.buttons = new Discord.Collection();
 client.commands.menus = new Discord.Collection();
 client.commands.slash = new Discord.Collection();
-console.log("Starting bot...");
+Logger.Info("Starting bot...");
 
 module.exports = {
     client: client,
@@ -37,12 +39,13 @@ module.exports = {
     channelLogChannel: channelLogChannel,
     roleLogChannel: roleLogChannel,
     memberLogChannel: memberLogChannel,
+    staffLogChannel: staffLogChannel,
 }
 // Load handlers and commands
 const handlers = fs.readdirSync('./src/handlers').filter(file => file.endsWith('.js'));
 for (const file of handlers) {
 	const handler = require(`./src/handlers/${file}`);
-    console.log("[HANDLER] Loading handler "+file);
+    Logger.Info("[HANDLER] Loading handler "+file);
 	handler.run();
 }
 
@@ -52,7 +55,7 @@ console.log("[EVENTS] Registering events...");
 
 for (const file of eventFiles) {
 	const event = require(`./src/listeners/${file}`);
-    console.log("[EVENTS] Loading event listener "+file);
+    Logger.Info("[EVENTS] Loading event listener "+file);
 	if (event.once) {
 		client.once(event.name, (...args) => event.run(...args));
 	} else {
