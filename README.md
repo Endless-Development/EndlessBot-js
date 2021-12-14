@@ -9,5 +9,5 @@ I'm currently using discord.js as a wrapper for the Discord API, chalk for the l
 | Dependencies | Version |
 | ------------- | ------------- |
 | discord.js | v13.3.1 |
-| chalk | v5.0.0 |
+| colors | v1.4.0 |
 | fs | v0.0.1-security |
