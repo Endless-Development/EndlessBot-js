@@ -25,9 +25,21 @@ exports.Warning = Warning;
 exports.Error = Error;
 
 function writeFile(path, content) {
-    fs.writeFile(path, content, function(err) {
-        if(err) {
-            return console.log(err);
+    var newContent = content;
+
+    try {
+        if (fs.existsSync(logFilePath)) {
+            fs.readFile(path, 'utf-8', (err, data) => {
+                if(err) return Error(err);
+
+                console.log("content found: "+data);
+                newContent = data + content;
+                console.log("new content: "+newContent);
+            });
         }
+    } catch(err) { Logger.Error(err) }
+
+    fs.writeFile(path, newContent, function(err) {
+        if(err) return Error(err);
     });
 }
