@@ -6,6 +6,8 @@ const roleLogChannel = "919262133722685531";
 const memberLogChannel = "919261911688831006";
 const staffLogChannel = "885130939682918431";
 
+const logFilePath = "./logs/latest"
+
 const Logger = require("./src/util/Logger");
 const fs = require("fs");
 const Discord = require("discord.js");
@@ -31,6 +33,14 @@ client.commands.normal.aliases = new Discord.Collection();
 client.commands.buttons = new Discord.Collection();
 client.commands.menus = new Discord.Collection();
 client.commands.slash = new Discord.Collection();
+try {
+    if (fs.existsSync(logFilePath)) {
+        try {
+            fs.unlinkSync(logFilePath);
+        } catch(err) { Logger.Error(err) }
+    }
+} catch(err) { Logger.Error(err) }
+
 Logger.Info("Starting bot...");
 
 module.exports = {
@@ -51,7 +61,7 @@ for (const file of handlers) {
 
 // Load events
 const eventFiles = fs.readdirSync('./src/listeners').filter(file => file.endsWith('.js'));
-console.log("[EVENTS] Registering events...");
+Logger.Info("[EVENTS] Registering events...");
 
 for (const file of eventFiles) {
 	const event = require(`./src/listeners/${file}`);
