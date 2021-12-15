@@ -13,6 +13,6 @@ module.exports = {
         if(channel.isVoice()) embed.addField(`Tipologia:`, `\`\`\`Canale vocale\`\`\``);
         if(channel.isText()) embed.addField(`Tipologia:`, `\`\`\`Canale testuale\`\`\``);
 
-        else index.client.channels.cache.find(channel => channel.id == index.channelLogChannel).send({ content: `**#deleted-channel**`, embeds: [embed] });
+        index.client.channels.cache.find(channel => channel.id == index.channelLogChannel).send({ content: `**#deleted-channel**`, embeds: [embed] });
     }
 }
