@@ -13,6 +13,8 @@ module.exports = {
         if(old.name != channel.name) {
             embed.addField(`Nome prima:`, `\`\`\`${old.name}\`\`\``, true);
             embed.addField(`Nome dopo:`, `\`\`\`${channel.name}\`\`\``, true);
+        } else {
+            embed.addField(`Nome del canale:`, `\`\`\`${channel.name}\`\`\``);
         }
         
         if(channel.isVoice()) embed.addField(`Tipologia:`, `\`\`\`Canale vocale\`\`\``);
