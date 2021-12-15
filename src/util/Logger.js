@@ -31,10 +31,7 @@ function writeFile(path, content) {
         if (fs.existsSync(logFilePath)) {
             fs.readFile(path, 'utf-8', (err, data) => {
                 if(err) return Error(err);
-
-                console.log("content found: "+data);
                 newContent = data + content;
-                console.log("new content: "+newContent);
             });
         }
     } catch(err) { Logger.Error(err) }
