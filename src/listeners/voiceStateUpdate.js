@@ -5,31 +5,47 @@ module.exports = {
     name: 'voiceStateUpdate',
     run: async(old, member) => {
         // If the user joins a channel and it's the "join to create" channel it will create some custom channels for him
-        if(member.voice && member.voice.channel && member.voice.channel.id == index.joinToCreateChannel) {
-            let embed = new MessageEmbed()
-            .setColor(role.hexColor)
-            .setTitle("Canale personalizzato")
-            .setDescription("Hai creato un canale personalizzato, questa è la chat e ti ho spostato nel vocale apposito.\n**Se tutti quelli nel vocale usciranno questi canali verranno eliminati!**")
-            .setFooter(member.tag, member.displayAvatarURL());
+        if(member.voice && member.voice.channel) {
+            if(member.voice.channel.id == index.joinToCreateChannel) {
+                let embed = new MessageEmbed()
+                .setColor(role.hexColor)
+                .setTitle("Canale personalizzato")
+                .setDescription("Hai creato un canale personalizzato, questa è la chat e ti ho spostato nel vocale apposito.\n**Se tutti quelli nel vocale usciranno questi canali verranno eliminati!**")
+                .setFooter(member.tag, member.displayAvatarURL());
 
-            if(member.voice.guild.id == index.endlessNetworkID) {
-                member.voice.guild.channels.create("「👥」"+member.displayName, {
-                    type: "GUILD_VOICE",
-                    permissionOverwrites: [
-                        {
-                            id: member.id,
-                            allow: [Permissions.FLAGS.VIEW_CHANNEL]
-                        },
-                        {
-                            id: member.voice.guild.everyone,
-                            deny: [Permissions.FLAGS.VIEW_CHANNEL]
-                        }
-                    ]
-                })
+                if(member.voice.guild.id == index.endlessNetworkID) {
+                    member.voice.guild.channels.create("「👥」"+member.displayName, {
+                        type: "GUILD_VOICE",
+                        parent: "909826113759477820",
+                        permissionOverwrites: [
+                            {
+                                id: member.id,
+                                allow: [Permissions.FLAGS.VIEW_CHANNEL]
+                            },
+                            {
+                                id: member.voice.guild.everyone,
+                                deny: [Permissions.FLAGS.VIEW_CHANNEL]
+                            }
+                        ]
+                    });
+                    const newChannel = member.voice.guild.channels.create("「👥」"+member.displayName, {
+                        type: "GUILD_TEXT",
+                        parent: "909826113759477820",
+                        permissionOverwrites: [
+                            {
+                                id: member.id,
+                                allow: [Permissions.FLAGS.VIEW_CHANNEL]
+                            },
+                            {
+                                id: member.voice.guild.everyone,
+                                deny: [Permissions.FLAGS.VIEW_CHANNEL]
+                            }
+                        ]
+                    })
+
+                    newChannel.send({ content: `**${member}**`, embeds: [embed] });
+                }
             }
-
-
-            //index.client.channels.cache.find(channel => channel.id == index.roleLogChannel).send({ content: `**${member}**`, embeds: [embed] });
         }
 
         // Check if the channel the user was in was a custom channel
