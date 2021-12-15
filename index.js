@@ -1,10 +1,11 @@
 const { token, prefix } = require("./config/main.json");
+const Channels = require("./config/channels.json");
 
-const messageLogChannel = "919238263171063878";
-const channelLogChannel = "919261939035688960";
-const roleLogChannel = "919262133722685531";
-const memberLogChannel = "919261911688831006";
-const staffLogChannel = "885130939682918431";
+const messageLogChannel = Channels.messageLogChannel;
+const channelLogChannel = Channels.channelLogChannel;
+const roleLogChannel = Channels.roleLogChannel;
+const memberLogChannel = Channels.memberLogChannel;
+const staffLogChannel = Channels.staffLogChannel;
 
 const logFilePath = "./logs/latest"
 
@@ -76,7 +77,7 @@ for (const file of eventFiles) {
 client.on("messageCreate", async message => {
     if(message.author.bot) return;
     if(!message.guild || message.guild.id != "885121885346623498") return message.reply("Non stai usando il bot in un server o il server non è **Endless Network**!");
-    if(message.mentions.has(client.user)) return message.reply("Il mio prefisso è **`!`**, usa **`!help`** per la lista dei comandi");
+    if(message.mentions.has(client.user)) return message.reply(`Il mio prefisso è **\`${prefix}\`**, usa **\`${prefix}help\`** per la lista dei comandi`);
     if(!message.content.startsWith(prefix)) return;
     if(!message.member) message.member = await message.guild.fetchMember(message);
     const args = message.content.slice(prefix.length).trim().split(/ +/g);
