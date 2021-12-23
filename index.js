@@ -1,6 +1,7 @@
 const { token, prefix } = require("./config/main.json");
 const LoggingChannels = require("./config/loggingChannels.json");
 const CustomChannels = require("./config/customChannels.json");
+const Stats = require("./config/stats.json");
 
 // Logging
 const messageLogChannel = LoggingChannels.messageLogChannel;
@@ -17,6 +18,12 @@ const customChannels = [];
 const endlessNetworkID = "885121885346623498";
 
 const logFilePath = "./logs/latest"
+
+// Server stats
+const membersCounter = Stats.members;
+const rolesCounter = Stats.roles;
+const channelsCounter = Stats.channels;
+const botsCounter = Stats.bot;
 
 const Logger = require("./src/util/Logger");
 const fs = require("fs");
@@ -64,7 +71,11 @@ module.exports = {
     createTextChannel: createTextChannel,
     createVoiceChannel: createVoiceChannel,
     customChannels: customChannels,
-    endlessNetworkID: endlessNetworkID
+    endlessNetworkID: endlessNetworkID,
+    membersCounter: membersCounter,
+    rolesCounter: rolesCounter,
+    channelsCounter: channelsCounter,
+    botsCounter: botsCounter
 }
 // Load handlers and commands
 const handlers = fs.readdirSync('./src/handlers').filter(file => file.endsWith('.js'));
