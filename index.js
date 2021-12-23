@@ -2,6 +2,7 @@ const { token, prefix } = require("./config/main.json");
 const LoggingChannels = require("./config/loggingChannels.json");
 const CustomChannels = require("./config/customChannels.json");
 const Stats = require("./config/stats.json");
+const ServerStats = require("./src/util/ServerStats");
 
 // Logging
 const messageLogChannel = LoggingChannels.messageLogChannel;
@@ -40,6 +41,7 @@ const client = new Discord.Client({
         Discord.Intents.FLAGS.GUILD_VOICE_STATES,
         Discord.Intents.FLAGS.GUILD_INVITES,
         Discord.Intents.FLAGS.GUILD_BANS,
+        Discord.Intents.FLAGS.GUILD_INTEGRATIONS,
     ],
     partials: ["CHANNEL"]
 });
@@ -115,3 +117,6 @@ client.on("messageCreate", async message => {
 });
 
 client.login(token);
+
+ServerStats.SetClient(client);
+ServerStats.UpdateStats();
