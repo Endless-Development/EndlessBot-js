@@ -1,8 +1,6 @@
-const { token, prefix } = require("./config/main.json");
+const { token, prefix} = require("./config/main.json");
 const LoggingChannels = require("./config/loggingChannels.json");
 const CustomChannels = require("./config/customChannels.json");
-const Stats = require("./config/stats.json");
-const ServerStats = require("./src/util/ServerStats");
 
 // Logging
 const messageLogChannel = LoggingChannels.messageLogChannel;
@@ -18,16 +16,11 @@ const createVoiceChannel = CustomChannels.createVoiceChannel;
 const customChannels = [];
 const endlessNetworkID = "885121885346623498";
 
-const logFilePath = "./logs/latest"
-
-// Server stats
-const membersCounter = Stats.members;
-const rolesCounter = Stats.roles;
-const channelsCounter = Stats.channels;
-const botsCounter = Stats.bot;
+const logFilePath = "./logs/latest";
 
 const Logger = require("./src/util/Logger");
 const fs = require("fs");
+const path = require("path");
 const Discord = require("discord.js");
 const client = new Discord.Client({
     intents: [
@@ -41,7 +34,6 @@ const client = new Discord.Client({
         Discord.Intents.FLAGS.GUILD_VOICE_STATES,
         Discord.Intents.FLAGS.GUILD_INVITES,
         Discord.Intents.FLAGS.GUILD_BANS,
-        Discord.Intents.FLAGS.GUILD_INTEGRATIONS,
     ],
     partials: ["CHANNEL"]
 });
@@ -74,10 +66,6 @@ module.exports = {
     createVoiceChannel: createVoiceChannel,
     customChannels: customChannels,
     endlessNetworkID: endlessNetworkID,
-    membersCounter: membersCounter,
-    rolesCounter: rolesCounter,
-    channelsCounter: channelsCounter,
-    botsCounter: botsCounter
 }
 // Load handlers and commands
 const handlers = fs.readdirSync('./src/handlers').filter(file => file.endsWith('.js'));
@@ -117,6 +105,3 @@ client.on("messageCreate", async message => {
 });
 
 client.login(token);
-
-ServerStats.SetClient(client);
-ServerStats.UpdateStats();
