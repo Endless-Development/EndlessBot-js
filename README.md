@@ -1,10 +1,10 @@
-# About
-This is a Javascript version of my [C# Discord Bot (EndlessBot)](https://github.com/Endless-Development/EndlessBot)
+# Il nuovo bot
+Versione javascript del nostro bot [C# Discord Bot (EndlessBot)](https://github.com/Endless-Development/EndlessBot)
 
-I added ton of new features like action logs, new type of moderation commands, the possibility to create custom voice and text channels, leveling, a ticket system, server security  and server stats
+Ha molte nuove funzioni come i log e un nuovo sistema di event listener, metteremo nuovi comandi di moderazione, un sistema di ticket, di livellamento, di canali temporanei e di server stats
 
-## Libraries i use (Node.js v16.13.1)
-I'm currently using discord.js as a wrapper for the Discord API, chalk for the logging system and fs for file managing
+## API (Node.js)
+Le librerie che usiamo per il bot
 
 | Dependencies | Version |
 | ------------- | ------------- |
