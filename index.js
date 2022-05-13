@@ -34,6 +34,7 @@ const client = new Discord.Client({
         Discord.Intents.FLAGS.GUILD_VOICE_STATES,
         Discord.Intents.FLAGS.GUILD_INVITES,
         Discord.Intents.FLAGS.GUILD_BANS,
+        Discord.Intents.FLAGS.GUILD_INTEGRATIONS
     ],
     partials: ["CHANNEL"]
 });
