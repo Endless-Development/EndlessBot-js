@@ -1,6 +1,6 @@
 const { token, clientId, guildId } = require("../../config/main.json");
 const { readdirSync } = require("fs");
-const { client } = require("../../index");
+const { client, useOldHandler } = require("../../index");
 const Logger = require("../util/Logger");
 var commands;
 
@@ -9,6 +9,7 @@ const { Routes } = require("discord-api-types/v9");
 var slashCommands = [];
 
 function run() {
+    if(!useOldHandler) return;
     console.log("[HANDLER] Loading Commands...");
     commands = readdirSync(`./src/commands`).filter(file => file.endsWith(".js"));
 
@@ -29,17 +30,20 @@ function run() {
         if(pull.aliases && Array.isArray(pull.aliases)) pull.aliases.forEach(alias => client.aliases.set(alias, pull.name));
     }
 
+    Logger.Success('[HANDLER] Successfully loaded default commands.');
+    
+
     const rest = new REST({ version: '9' }).setToken(token);
     (async () => {
         try {
-            Logger.Info('Loading Slash commands.');
+            Logger.Info('[HANDLER] Loading Slash commands.');
 
             await rest.put(
                 Routes.applicationGuildCommands(clientId, guildId),
                 { body: slashCommands },
             );
 
-            Logger.Success('Successfully loaded Slash commands.');
+            Logger.Success('[HANDLER] Successfully loaded Slash commands.');
         } catch (error) {
             Logger.Error(error);
         }
@@ -47,5 +51,6 @@ function run() {
 }
 
 module.exports = {
-    run: run
+    run: run,
+    slashCommands: slashCommands
 }
