@@ -1,12 +1,7 @@
 const { SlashCommandBuilder } = require("@discordjs/builders");
 const { MessageEmbed } = require("discord.js");
-const data = new SlashCommandBuilder()
-	.setName('ping')
-	.setDescription('Visualizza il ping del bot')
 
 module.exports = {
-    slash: true,
-    data: data,
     name: "ping",
     run: async (client, message, args) => {
         message.delete();
