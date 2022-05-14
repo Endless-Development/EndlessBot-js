@@ -3,14 +3,13 @@ const Logger = require("./Logger");
 
 function createSlashCommands(guildId, client) {
     var guild = client.guilds.cache.get(guildId);
-    guild.commands.create({
-        name: "ping",
-        description: "Visualizza il ping del bot"
-    })
-    guild.commands.create({
-        name: "help",
-        description: "Visualizza le informazioni del bot, e la lista dei comandi"
-    })
+    guild.commands.set(
+    [
+        {
+            name: "ping",
+            description: "Visualizza il ping del bot"
+        }
+    ], guildId)
 
     Logger.Success("[UTIL] Created slash commands!")
 }
