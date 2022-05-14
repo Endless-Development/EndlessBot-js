@@ -25,33 +25,9 @@ function createSlashCommands(guildId, client) {
                 },
                 {
                     name: "durata",
-                    description: "Per quanto tempo starà in timeout?",
-                    type: "NUMBER",
-                    required: true
-                },
-                {
-                    name: "tipologia",
-                    description: "secondi,minuti,ore o giorni",
+                    description: "Per quanto tempo starà in timeout? (Esempio: 1d, 1h, ecc)",
                     type: "STRING",
-                    required: true,
-                    choices: [
-                        {
-                            name: "secondi",
-                            value: "secondi"
-                        },
-                        {
-                            name: "minuti",
-                            value: "minuti"
-                        },
-                        {
-                            name: "ore",
-                            value: "ore"
-                        },
-                        {
-                            name: "giorni",
-                            value: "giorni"
-                        }
-                    ]
+                    required: true
                 },
                 {
                     name: "motivo",
@@ -61,7 +37,7 @@ function createSlashCommands(guildId, client) {
                 }
             ]
         },
-        /*{
+        {
             name: "clear",
             description: "Elimina il numero di messaggi specificato",
             options: [
@@ -72,7 +48,7 @@ function createSlashCommands(guildId, client) {
                     required: true
                 }
             ]
-        }*/
+        }
     ], guildId)
 
     Logger.Success("[UTIL] Created slash commands!")
