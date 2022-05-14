@@ -13,6 +13,6 @@ module.exports = {
             .setDescription(ping);
         
         msg.delete();
-        interaction.reply({ embeds: [embedPing] });
+        await interaction.reply({ embeds: [embedPing] });
     }
 }
