@@ -34,6 +34,5 @@ module.exports = {
         pagination.setPages(pages);
         pagination.setAuthorizedUsers([interaction.user.id]);
         pagination.send(null, interaction);
-        interaction.reply("a");
     }
 }
