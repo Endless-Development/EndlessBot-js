@@ -10,7 +10,7 @@ module.exports = {
         if(interaction.commandName == "ping") {
             pingCommand.run(interaction);
         }
-        if(interaction.commandName == "else") {
+        if(interaction.commandName == "help") {
             helpCommand.run(interaction);
         }
 
