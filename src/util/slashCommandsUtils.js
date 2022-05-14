@@ -7,6 +7,10 @@ function createSlashCommands(guildId, client) {
         name: "ping",
         description: "Visualizza il ping del bot"
     })
+    guild.commands.create({
+        name: "help",
+        description: "Visualizza le informazioni del bot, e la lista dei comandi"
+    })
 
     Logger.Success("[UTIL] Created slash commands!")
 }
