@@ -9,7 +9,10 @@ const { Routes } = require("discord-api-types/v9");
 var slashCommands = [];
 
 function run() {
-    if(!useOldHandler) return;
+    if(!useOldHandler) {
+        Logger.Error("[HANDLER] Old command handler is disabled!")
+        return;
+    }
     console.log("[HANDLER] Loading Commands...");
     commands = readdirSync(`./src/commands`).filter(file => file.endsWith(".js"));
 
