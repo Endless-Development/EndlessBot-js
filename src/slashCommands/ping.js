@@ -3,7 +3,7 @@ const { MessageEmbed } = require("discord.js");
 module.exports = {
     name: "ping",
     run: async (interaction) => {
-        const msg = await interaction.channel.send("<@"+interaction.member.id+">, Sto caricando il mio ping...");
+        const msg = await interaction.channel.send("Sto calcolando il mio ping...");
 
         const ping = `${Math.floor(msg.createdTimestamp - interaction.createdTimestamp)}ms`
 
