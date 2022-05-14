@@ -7,7 +7,11 @@
     "@discordjs/rest": "^0.3.0",
     "colors": "^1.4.0",
     "discord-api-types": "^0.26.1",
+    "discord-buttons": "^4.0.0-deprecated",
     "discord.js": "^13.3.1",
+    "discord.js-pagination": "^1.0.3",
+    "discordjs-button-pagination": "^3.0.1",
+    "djs-pagination-buttons": "^0.2.4-dev",
     "fs": "^0.0.1-security",
     "ms": "^2.1.3"
   },
