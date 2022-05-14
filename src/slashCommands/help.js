@@ -1,9 +1,11 @@
 const { MessageEmbed, MessageButton } = require("discord.js");
-const paginationEmbed = require('discordjs-button-pagination')
+const { Pagination } = require("djs-pagination-buttons");
 
 module.exports = {
     name: "help",
     run: async (interaction) => {
+        if(!interaction) return;
+
         const pagina1 = new MessageEmbed()
             .setColor("#ff0000")
             .setTitle("Endless Network Bot")
@@ -18,29 +20,20 @@ module.exports = {
             .addField("/timeout", "Comando degli staff per mettere in timeout.", true)
             .addField("Il bot è ancora in sviluppo", "Verranno aggiunti molti altri comandi", true)
 
-        const bottone1 = new MessageButton()
-            .setCustomId("previousbtn")
-            .setLabel("Precedente")
-            .setStyle("PRIMARY");
-
-        const bottone2 = new MessageButton()
-            .setCustomId("nextbtn")
-            .setLabel("Successivo")
-            .setStyle("PRIMARY");
-
         // Impostazioni per l'embed finale
         var pages = [
             pagina1,
             pagina2,
         ];
-        var buttons = [
-            bottone1,
-            bottone2
-        ];
         const timeout = 10000
 
-        // Manda l'embed con la pagination
-        paginationEmbed(interaction, pages, buttons, timeout);
+        //paginationEmbed(interaction, pages, buttons, timeout);
         //interaction.reply({ embeds: [  ] });
+
+        const pagination = new Pagination(interaction.client);
+        pagination.setPages(pages);
+        pagination.setAuthorizedUsers([interaction.user.id]);
+        pagination.send(null, interaction);
+        interaction.reply("a");
     }
 }
