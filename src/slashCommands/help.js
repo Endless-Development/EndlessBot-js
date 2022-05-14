@@ -1,5 +1,5 @@
-const { MessageEmbed } = require("discord.js");
-const pagination = require("discord.js-pagination");
+const { MessageEmbed, MessageButton } = require("discord.js");
+const paginationEmbed = require('discordjs-button-pagination')
 
 module.exports = {
     name: "help",
@@ -18,13 +18,29 @@ module.exports = {
             .addField("/timeout", "Comando degli staff per mettere in timeout.", true)
             .addField("Il bot è ancora in sviluppo", "Verranno aggiunti molti altri comandi", true)
 
+        const bottone1 = new MessageButton()
+            .setCustomId("previousbtn")
+            .setLabel("Precedente")
+            .setStyle("PRIMARY");
+
+        const bottone2 = new MessageButton()
+            .setCustomId("nextbtn")
+            .setLabel("Successivo")
+            .setStyle("PRIMARY");
+
+        // Impostazioni per l'embed finale
         var pages = [
             pagina1,
             pagina2,
         ];
-        var emojis = ['⏪', '⏩']
+        var buttons = [
+            bottone1,
+            bottone2
+        ];
+        const timeout = 10000
 
-        var embedHelp = pagination(msg, pages, emojis, 120000);
-        interaction.reply({ embeds: [ embedHelp ] });
+        // Manda l'embed con la pagination
+        paginationEmbed(interaction, pages, buttons, timeout);
+        //interaction.reply({ embeds: [  ] });
     }
 }
