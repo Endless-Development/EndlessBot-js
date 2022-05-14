@@ -2,5 +2,6 @@
     "token": "",
     "prefix": "",
     "clientId": "",
-    "guildId": ""
+    "guildId": "",
+    "useOldHandler": false
 }
