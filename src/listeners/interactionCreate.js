@@ -1,5 +1,6 @@
 const fs = require("fs");
 const pingCommand = require("../slashCommands/ping");
+const helpCommand = require("../slashCommands/help");
 
 module.exports = {
     name: 'interactionCreate',
@@ -8,6 +9,9 @@ module.exports = {
 
         if(interaction.commandName == "ping") {
             pingCommand.run(interaction);
+        }
+        if(interaction.commandName == "else") {
+            helpCommand.run(interaction);
         }
 
     }
