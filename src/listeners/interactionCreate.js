@@ -1,6 +1,7 @@
 const fs = require("fs");
 const pingCommand = require("../slashCommands/ping");
 const helpCommand = require("../slashCommands/help");
+const timeoutCommand = require("../slashCommands/timeout");
 
 module.exports = {
     name: 'interactionCreate',
@@ -12,6 +13,9 @@ module.exports = {
         }
         if(interaction.commandName == "help") {
             helpCommand.run(interaction);
+        }
+        if(interaction.commandName == "timeout") {
+            timeoutCommand.run(interaction);
         }
 
         //console.log(interaction.id);
