@@ -8,6 +8,10 @@ function createSlashCommands(guildId, client) {
         {
             name: "ping",
             description: "Visualizza il ping del bot"
+        },
+        {
+            name: "help",
+            description: "Visualizza le informazioni del bot, e la lista dei comandi"
         }
     ], guildId)
 
