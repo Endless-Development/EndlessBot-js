@@ -10,6 +10,9 @@ module.exports = {
         if(interaction.commandName == "ping") {
             pingCommand.run(interaction);
         }
+        if(interaction.commandName == "help") {
+            helpCommand.run(interaction);
+        }
 
         console.log(interaction.id);
 
