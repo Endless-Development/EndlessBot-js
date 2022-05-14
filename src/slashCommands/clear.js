@@ -1,4 +1,5 @@
 const { MessageEmbed, User } = require("discord.js");
+const { canaliSenzaClear } = require("../../index");
 
 module.exports = {
     name: "clear",
@@ -12,7 +13,7 @@ module.exports = {
         }
 
         var numero = interaction.options.getInteger("numero");
-        if(isNaN(numero)) {
+        if(isNaN(numero) || numero <= 0) {
             interaction.reply({
                 content: "Il numero di messaggi da eliminare deve essere superiore a 0!",
                 ephemeral: true
@@ -26,6 +27,21 @@ module.exports = {
             })
             return;
         }
+
+        function checkCanaleClear(canale) {
+            return canale != interaction.channel;
+        }
+
+        if(!canaliSenzaClear.every(checkCanaleClear)) {
+            interaction.reply({
+                content: "Non puoi usare il clear in questo canale!",
+                ephemeral: true
+            })
+            return;
+        }
+    
+
+
 
         let { size } = await interaction.channel.bulkDelete(numero);
 
