@@ -3,5 +3,5 @@
     "prefix": "",
     "clientId": "",
     "guildId": "",
-    "useOldHandler": false
+    "useOldHandler": // put true or false here
 }
