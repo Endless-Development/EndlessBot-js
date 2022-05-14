@@ -1,4 +1,4 @@
-const { token, prefix} = require("./config/main.json");
+const { token, prefix, useOldHandler } = require("./config/main.json");
 const LoggingChannels = require("./config/loggingChannels.json");
 const CustomChannels = require("./config/customChannels.json");
 
