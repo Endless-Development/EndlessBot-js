@@ -14,7 +14,7 @@ module.exports = {
             helpCommand.run(interaction);
         }
 
-        console.log(interaction.id);
+        //console.log(interaction.id);
 
     }
 }
