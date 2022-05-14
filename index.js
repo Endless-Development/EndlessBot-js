@@ -1,6 +1,7 @@
 const { token, prefix, useOldHandler } = require("./config/main.json");
 const LoggingChannels = require("./config/loggingChannels.json");
 const CustomChannels = require("./config/customChannels.json");
+const CommandsConfig = require("./config/commands.json")
 
 // Logging
 const messageLogChannel = LoggingChannels.messageLogChannel;
@@ -15,6 +16,9 @@ const createTextChannel = CustomChannels.createTextChannel;
 const createVoiceChannel = CustomChannels.createVoiceChannel;
 const customChannels = [];
 const endlessNetworkID = "885121885346623498";
+
+// Settings for specific commands
+const canaliSenzaClear = CommandsConfig.canaliSenzaClear;
 
 const logFilePath = "./logs/latest";
 
@@ -67,6 +71,7 @@ module.exports = {
     createVoiceChannel: createVoiceChannel,
     customChannels: customChannels,
     endlessNetworkID: endlessNetworkID,
+    canaliSenzaClear: canaliSenzaClear
 }
 // Load handlers and commands
 const handlers = fs.readdirSync('./src/handlers').filter(file => file.endsWith('.js'));
