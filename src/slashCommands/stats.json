@@ -1,0 +1,44 @@
+const { MessageEmbed } = require("discord.js");
+const fs = require("fs");
+
+module.exports = {
+    name: "stats",
+    run: async (interaction) => {
+        // Prende le informazioni dal file JSON
+        var name = "./database/user-stats.json";
+        var json = JSON.parse(fs.readFileSync(name).toString());
+
+        var utente = interaction.options.getUser("utente");
+        var embedStats;
+        // Crea embed diversi se è stato menzionato un altro utente o no
+        if(utente) {
+            var membro = interaction.guild.members.cache.get(utente.id);
+
+            if(!membro) {
+                interaction.reply({
+                    content: "L'utente che hai menzionato non è un utente valido o non è in questo server!",
+                    ephemeral: true
+                })
+                return;
+            }
+
+            var messaggi = json.messages[membro.id] || 0;
+
+            embedStats = new MessageEmbed()
+            .setColor("#ff0000")
+            .setTitle("Statistiche di "+utente.tag)
+            .setDescription("Queste statistiche vengono contate solo da quando la funzione è stata aggiunta")
+            .addField("Messaggi mandati", messaggi + " messaggi", true)
+        } else {
+            var messaggi = json.messages[interaction.member.id] || 0;
+
+            embedStats = new MessageEmbed()
+            .setColor("#ff0000")
+            .setTitle("Statistiche di "+interaction.user.tag)
+            .setDescription("Queste statistiche vengono contate solo da quando la funzione è stata aggiunta")
+            .addField("Messaggi mandati", messaggi + " messaggi", true)
+        }
+        
+        await interaction.reply({ embeds: [embedStats] });
+    }
+}
