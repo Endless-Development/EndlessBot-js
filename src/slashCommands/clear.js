@@ -49,7 +49,6 @@ module.exports = {
             .setColor("#ff0000")
             .setTitle("Clear")
             .setDescription("**"+size+" messaggi** sono stati eliminati in questo canale.")
-            .setFooter(`Comando eseguito da ${interaction.user.tag}`, interaction.member.displayAvatarURL())
 
         await interaction.reply({ embeds: [embedClear] })
     }
