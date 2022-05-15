@@ -3,6 +3,7 @@ const pingCommand = require("../slashCommands/ping");
 const helpCommand = require("../slashCommands/help");
 const timeoutCommand = require("../slashCommands/timeout");
 const clearCommand = require("../slashCommands/clear");
+const statsCommand = require("../slashCommands/stats");
 
 module.exports = {
     name: 'interactionCreate',
@@ -20,6 +21,9 @@ module.exports = {
         }
         if(interaction.commandName == "clear") {
             clearCommand.run(interaction);
+        }
+        if(interaction.commandName == "stats") {
+            statsCommand.run(interaction);
         }
 
         //console.log(interaction.id);
