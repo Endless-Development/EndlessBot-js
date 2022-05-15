@@ -48,6 +48,18 @@ function createSlashCommands(guildId, client) {
                     required: true
                 }
             ]
+        },
+        {
+            name: "stats",
+            description: "Mostra le statistiche in questo server di un utente",
+            options: [
+                {
+                    name: "utente",
+                    description: "L'utente di cui mostrare le statistiche, in caso non fossi tu.",
+                    type: "USER",
+                    required: false
+                }
+            ]
         }
     ], guildId)
 
