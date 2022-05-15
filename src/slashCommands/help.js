@@ -17,8 +17,10 @@ module.exports = {
             .setTitle("Endless Network Bot")
             .addField("/help", "Visualizza questa pagina con le info del bot.", true)
             .addField("/ping", "Visualizza il ping del bot con questo server discord.", true)
-            .addField("/timeout", "Comando degli staff per mettere in timeout.", true)
-            .addField("Il bot è ancora in sviluppo", "Verranno aggiunti molti altri comandi", true)
+            .addField("/stats", "Mostra le proprie statistiche o quelle di un altro utente.", true)
+            .addField("/timeout", "Mette in timeout un utente per il tempo specificato, con una motivazione.", true)
+            .addField("/clear", "Elimina il numero di messaggi specificato da un canale.", true)
+            .addField("Il bot è ancora in sviluppo", "Verranno aggiunti molti altri comandi", false)
 
         // Impostazioni per l'embed finale
         var pages = [
